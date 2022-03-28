@@ -70,6 +70,15 @@ class Point:
         if other.x is None:
             return self
 
+        if self == other and self.y == 0:
+            return self.__class__(None, None, self.a, self.b)
+
+        if self == other:
+            s = (3 * pow(self.x, 2) + self.a) / (2 * self.y)
+            x = pow(s, 2) - 2 * self.x
+            y = s * (self.x - x) - self.y
+            return self.__class__(self, x, y, self.a, self.b)
+
         if self.x == other.x and self.y != other.y:
             return self.__class__(self, self.x, None, self.a, self.b)
 
